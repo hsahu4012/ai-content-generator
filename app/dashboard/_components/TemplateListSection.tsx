@@ -1,5 +1,5 @@
 import Templates from '@/app/(data)/Templates';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import TemplateCard from './TemplateCard';
 
 export interface TEMPLATE {
@@ -24,14 +24,22 @@ interface TemplateListSectionProps {
 }
 
 const TemplateListSection: React.FC<TemplateListSectionProps> = ({ userSearchInput }) => {
+    const [templateList, setTemplateList] = useState(Templates);
     useEffect(() => {
-        console.log(userSearchInput);
+
+        if (userSearchInput) {
+            const filteredTemplates = Templates.filter((item: TEMPLATE) => item.name.toLowerCase().includes(userSearchInput.toLowerCase()));
+            setTemplateList(filteredTemplates);
+        }
+        else {
+            setTemplateList(Templates);
+        }
     }, [userSearchInput]);
 
     return (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 p-10">
             {
-                Templates.map((item: TEMPLATE, index: number) => (
+                templateList.map((item: TEMPLATE, index: number) => (
                     <TemplateCard key={index} {...item} />
                 ))
             }
