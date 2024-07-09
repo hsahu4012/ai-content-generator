@@ -1,3 +1,11 @@
+
+import React from 'react'
+
+const CreateNewContent = () => {
+    return (
+        <div> <h1>CreateNewContent</h1>
+ 
+
 "use client"
 import React, { useState } from 'react'
 import FormSection from '../_components/FormSection'
@@ -46,6 +54,7 @@ const CreateNewContent = (props: PROPS) => {
                     <OutputSection aiOutput={aiOutput} />
                 </div>
             </div>
+
         </div>
     )
 }
